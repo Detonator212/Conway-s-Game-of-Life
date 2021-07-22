@@ -20,16 +20,23 @@ function drawGrid() {
     }
 }
 
-function Square(x,y) {
-    this.x = x;
-    this.y = y;
+function drawSquare(x,y) {
+    ctx.fillStyle = "black";
+    ctx.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
+}
 
-    this.draw = function () {
-        ctx.fillStyle = "black";
-        ctx.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
+var liveSquares = new Set();
+
+liveSquares.add([5,6]);
+liveSquares.add([7,6]);
+
+
+function update() {
+    for (let item of liveSquares) {
+        drawSquare(item[0], item[1]);
     }
 }
 
-new Square(5,5).draw();
-
 drawGrid();
+
+update();
