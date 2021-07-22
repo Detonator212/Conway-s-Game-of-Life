@@ -20,7 +20,16 @@ function drawGrid() {
     }
 }
 
-drawGrid();
+function Square(x,y) {
+    this.x = x;
+    this.y = y;
 
-// ctx.fillStyle = "green";
-// ctx.fillRect(10,10,150,100);
+    this.draw = function () {
+        ctx.fillStyle = "black";
+        ctx.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
+    }
+}
+
+new Square(5,5).draw();
+
+drawGrid();
