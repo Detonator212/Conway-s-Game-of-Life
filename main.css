@@ -1,0 +1,17 @@
+body {
+    margin: 0px;
+}
+
+#title-bar {
+    background-color: red;
+    text-align: center;
+    padding: 10 0 10 0;
+}
+
+#canvas-container {
+    /* background-color: blue; */
+}
+
+#canvas {
+    border: 0px solid #000000;
+}
