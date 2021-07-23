@@ -1,31 +1,32 @@
 // document.querySelector("#canvas");
 
 canvas.width = window.innerWidth;
-canvas.height = 400;
-
-canvas2.width = window.innerWidth;
-canvas2.height = 400;
+canvas.height = window.innerHeight;
 
 var ctx = canvas.getContext("2d");
-var ctx2 = canvas2.getContext("2d");
 
 var squareSize = 10;
 
 function drawGrid() {
-    for (i = 0; i <= canvas2.height; i += squareSize) {
-        ctx2.moveTo(0,i);
-        ctx2.lineTo(canvas2.width, i);
-        ctx2.stroke();
+    // ctx.fillStyle = "white";
+    ctx.shadowBlur = 0;
+    ctx.beginPath();
+    for (i = 0; i <= canvas.height; i += squareSize) {
+        ctx.moveTo(0,i);
+        ctx.lineTo(canvas.width, i);
     }
-    for (i = 0; i <= canvas2.width; i += squareSize) {
-        ctx2.moveTo(i,0);
-        ctx2.lineTo(i, canvas2.height);
-        ctx2.stroke();
+    for (i = 0; i <= canvas.width; i += squareSize) {
+        ctx.moveTo(i,0);
+        ctx.lineTo(i, canvas.height);
     }
+    ctx.stroke();
+    ctx.closePath();
 }
 
 function drawSquare(x,y) {
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "white";
     ctx.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
 }
 
@@ -106,9 +107,8 @@ function checks() {
 }
 
 function update() {
-    console.log("interval")
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    checks();
+    drawGrid();
     for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
 }
 
@@ -120,12 +120,10 @@ canvas.onmousedown = function(event) {
 
     // console.log(event.clientX + " " + event.clientY);
     var titleBar = document.querySelector("#title-bar");
-    liveSquares.add(stringify(Math.floor(event.clientX/squareSize), Math.floor((event.clientY - titleBar.offsetHeight) /squareSize)));
+    liveSquares.add(stringify(Math.floor(event.clientX/squareSize), Math.floor((event.clientY) /squareSize)));
     // console.log(stringify(Math.floor(event.clientX/squareSize), Math.floor(event.clientY/squareSize)));
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
-
+    update();
 };
 
 var started = false;
@@ -133,7 +131,10 @@ var interval;
 
 document.querySelector("#start-button").onclick = function() {
     if (!started) {
-        interval = setInterval(update, 500);
+        interval = setInterval(function() {
+            checks();
+            update();
+        }, 100);
         started = true;
     }
 };
