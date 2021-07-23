@@ -1,5 +1,8 @@
 // document.querySelector("#canvas");
 
+var offsetX = 0;
+var offsetY = 0;
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -8,14 +11,15 @@ var ctx = canvas.getContext("2d");
 var squareSize = 10;
 
 function drawGrid() {
+
     // ctx.fillStyle = "white";
     ctx.shadowBlur = 0;
     ctx.beginPath();
-    for (i = 0; i <= canvas.height; i += squareSize) {
+    for (i = offsetY % squareSize; i <= canvas.height; i += squareSize) {
         ctx.moveTo(0,i);
         ctx.lineTo(canvas.width, i);
     }
-    for (i = 0; i <= canvas.width; i += squareSize) {
+    for (i = offsetX % squareSize; i <= canvas.width; i += squareSize) {
         ctx.moveTo(i,0);
         ctx.lineTo(i, canvas.height);
     }
@@ -27,7 +31,7 @@ function drawSquare(x,y) {
     ctx.fillStyle = "white";
     ctx.shadowBlur = 10;
     ctx.shadowColor = "white";
-    ctx.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
+    ctx.fillRect(x*squareSize + offsetX, y*squareSize + offsetY, squareSize, squareSize);
 }
 
 var liveSquares = new Set();
@@ -116,15 +120,49 @@ drawGrid();
 for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
 
 
-canvas.onmousedown = function(event) {
+canvas.addEventListener("click", function(event) {
 
     // console.log(event.clientX + " " + event.clientY);
     var titleBar = document.querySelector("#title-bar");
-    liveSquares.add(stringify(Math.floor(event.clientX/squareSize), Math.floor((event.clientY) /squareSize)));
+    liveSquares.add(stringify(Math.floor((event.clientX - offsetX)/squareSize), Math.floor((event.clientY - offsetY)/squareSize)));
     // console.log(stringify(Math.floor(event.clientX/squareSize), Math.floor(event.clientY/squareSize)));
 
     update();
+});
+
+var oldOffsetX = 0;
+var oldOffsetY = 0;
+
+function onMouseMove(event) {
+    offsetX = oldOffsetX;
+    offsetY = oldOffsetY;
+    offsetX += event.pageX - mouseStartX;
+    offsetY += event.pageY - mouseStartY;
+    update();
+    // console.log("offsetX: " + offsetX + " offsetY: " + offsetY);
+}
+
+var mouseStartX;
+var mouseStartY;
+
+canvas.onmousedown = function(event) {
+    document.addEventListener("mousemove", onMouseMove)
+
+    document.addEventListener("mouseup", onMouseUp)
+
+    mouseStartX = event.pageX;
+    mouseStartY = event.pageY;
+
+    oldOffsetX = offsetX;
+    oldOffsetY = offsetY;
 };
+
+function onMouseUp(event) {
+    document.removeEventListener("mousemove", onMouseMove)
+    update();
+    document.removeEventListener("mouseup", onMouseUp)
+}
+
 
 var started = false;
 var interval;
