@@ -106,6 +106,7 @@ function checks() {
 }
 
 function update() {
+    console.log("interval")
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     checks();
     for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
@@ -113,7 +114,6 @@ function update() {
 
 drawGrid();
 for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
-setInterval(update, 500);
 
 
 canvas.onmousedown = function(event) {
@@ -126,4 +126,19 @@ canvas.onmousedown = function(event) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
 
+};
+
+var started = false;
+var interval;
+
+document.querySelector("#start-button").onclick = function() {
+    if (!started) {
+        interval = setInterval(update, 500);
+        started = true;
+    }
+};
+
+document.querySelector("#stop-button").onclick = function() {
+    clearInterval(interval);
+    started = false;
 };
