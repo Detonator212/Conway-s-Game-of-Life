@@ -4,7 +4,7 @@ body {
 }
 
 #title-bar {
-    background-color: rgba(19, 19, 19, 0.7);
+    background-color: rgba(17, 17, 17, 0.7);
     position: fixed;
     top: 0;
     color: white;
@@ -15,6 +15,7 @@ body {
     font-size: 20px;
     backdrop-filter: blur(20px);
     width: 100%;
+    user-select: none; 
 }
 
 #canvas {
@@ -23,9 +24,27 @@ body {
 
 #controls-bar {
     position: fixed;
-    background-color: rgb(27, 27, 27, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(27, 27, 27, 0.8);
     backdrop-filter: blur(20px);
     height: 80;
     width: 100%;
     bottom: 0;
+}
+
+#start-button {
+    width: 60;
+    height: 60;
+    background-color: rgba(255, 255, 255, 0.123);
+    border-radius: 50%;
+    transition: 0.1s;
+
+}
+#start-button:hover {
+    transform: scale(1.1)
+}
+#start-button:active {
+    transform: scale(1)
 }

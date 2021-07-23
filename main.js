@@ -167,16 +167,17 @@ var started = false;
 var interval;
 
 document.querySelector("#start-button").onclick = function() {
-    if (!started) {
+    var startButtonIcon = document.querySelector("#start-button-icon")
+    if (started) {
+        clearInterval(interval);
+        started = false;
+        startButtonIcon.firstElementChild.setAttribute("href", "#play-icon")
+    } else {
         interval = setInterval(function() {
             checks();
             update();
         }, 100);
         started = true;
+        startButtonIcon.firstElementChild.setAttribute("href", "#pause-icon")
     }
-};
-
-document.querySelector("#stop-button").onclick = function() {
-    clearInterval(interval);
-    started = false;
 };

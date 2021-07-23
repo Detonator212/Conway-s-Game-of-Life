@@ -7,10 +7,22 @@
         <canvas id="canvas"></canvas>
         <div id="title-bar">Conway's Game of Life</div>
         <div id="controls-bar">
-            <button id="start-button">Start</button>
-            <button id="stop-button">Stop</button>
+            <div id="start-button">
+                <svg id="start-button-icon" viewBox="-3 -3 30 30" fill="white">
+                    <use href="#play-icon"></use>
+                </svg>
+            </div>
         </div>
     </body>
+
+    <svg style="display: none;">
+        <symbol id="play-icon">
+            <path d="M8 5v14l11-7z"/>
+        </symbol>
+        <symbol id="pause-icon">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </symbol>
+    </svg>
 
     <script src="main.js"></script>
 </html>
