@@ -3,6 +3,8 @@
 var offsetX = 0;
 var offsetY = 0;
 
+var drag = false;
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -123,8 +125,8 @@ for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
 canvas.addEventListener("click", function(event) {
 
     // console.log(event.clientX + " " + event.clientY);
-    var titleBar = document.querySelector("#title-bar");
-    liveSquares.add(stringify(Math.floor((event.clientX - offsetX)/squareSize), Math.floor((event.clientY - offsetY)/squareSize)));
+    // var titleBar = document.querySelector("#title-bar");
+    // liveSquares.add(stringify(Math.floor((event.clientX - offsetX)/squareSize), Math.floor((event.clientY - offsetY)/squareSize)));
     // console.log(stringify(Math.floor(event.clientX/squareSize), Math.floor(event.clientY/squareSize)));
 
     update();
@@ -134,6 +136,7 @@ var oldOffsetX = 0;
 var oldOffsetY = 0;
 
 function onMouseMove(event) {
+    drag = true;
     offsetX = oldOffsetX;
     offsetY = oldOffsetY;
     offsetX += event.pageX - mouseStartX;
@@ -159,8 +162,15 @@ canvas.onmousedown = function(event) {
 
 function onMouseUp(event) {
     document.removeEventListener("mousemove", onMouseMove)
-    update();
     document.removeEventListener("mouseup", onMouseUp)
+
+    if (!drag) {
+        var titleBar = document.querySelector("#title-bar");
+        liveSquares.add(stringify(Math.floor((event.clientX - offsetX)/squareSize), Math.floor((event.clientY - offsetY)/squareSize)));
+    } else {
+        drag = false;
+    }
+    update();
 }
 
 
