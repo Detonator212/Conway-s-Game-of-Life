@@ -30,18 +30,18 @@ function drawGrid() {
 }
 
 function drawSquare(x,y) {
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "lightgreen";
     ctx.shadowBlur = 10;
-    ctx.shadowColor = "white";
+    ctx.shadowColor = "green";
     ctx.fillRect(x*squareSize + offsetX, y*squareSize + offsetY, squareSize, squareSize);
 }
 
 var liveSquares = new Set();
 
-liveSquares.add(stringify(5,6));
-liveSquares.add(stringify(6,6));
-liveSquares.add(stringify(7,6));
-liveSquares.add(stringify(6,5));
+liveSquares.add(stringify(10,10));
+liveSquares.add(stringify(11,10));
+liveSquares.add(stringify(12,10));
+liveSquares.add(stringify(10,9));
 
 
 function stringify(x,y) {
@@ -120,17 +120,6 @@ function update() {
 
 drawGrid();
 for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
-
-
-canvas.addEventListener("click", function(event) {
-
-    // console.log(event.clientX + " " + event.clientY);
-    // var titleBar = document.querySelector("#title-bar");
-    // liveSquares.add(stringify(Math.floor((event.clientX - offsetX)/squareSize), Math.floor((event.clientY - offsetY)/squareSize)));
-    // console.log(stringify(Math.floor(event.clientX/squareSize), Math.floor(event.clientY/squareSize)));
-
-    update();
-});
 
 var oldOffsetX = 0;
 var oldOffsetY = 0;

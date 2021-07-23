@@ -1,17 +1,19 @@
 body {
     margin: 0px;
-    background-color: #161616;
+    background-color: rgb(22, 22, 22);
 }
 
 #title-bar {
-    /* background-color: #242424; */
+    background-color: rgba(19, 19, 19, 0.7);
     position: fixed;
     top: 0;
     color: white;
     text-align: center;
     padding: 20 0 20 0;
     font-family:  Sans-serif;
-    /* backdrop-filter: blur(10px); */
+    font-weight: bold;
+    font-size: 20px;
+    backdrop-filter: blur(20px);
     width: 100%;
 }
 
@@ -21,8 +23,8 @@ body {
 
 #controls-bar {
     position: fixed;
-    background-color: rgba(22, 22, 22, 0.822);
-    backdrop-filter: blur(10px);
+    background-color: rgb(27, 27, 27, 0.8);
+    backdrop-filter: blur(20px);
     height: 80;
     width: 100%;
     bottom: 0;
