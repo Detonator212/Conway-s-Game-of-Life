@@ -10,8 +10,14 @@ body {
 
 #canvas-container {
     /* background-color: blue; */
+    position: relative;
 }
 
 #canvas {
+    position: absolute;
     border: 0px solid #000000;
+}
+
+#canvas2 {
+    position: absolute;
 }

@@ -1,23 +1,31 @@
-document.querySelector("#canvas");
+// document.querySelector("#canvas");
 
 canvas.width = window.innerWidth;
 canvas.height = 400;
 
+canvas2.width = window.innerWidth;
+canvas2.height = 400;
+
 var ctx = canvas.getContext("2d");
+var ctx2 = canvas2.getContext("2d");
 
 var squareSize = 10;
 
 function drawGrid() {
-    for (i = 0; i <= canvas.height; i += squareSize) {
-        ctx.moveTo(0,i);
-        ctx.lineTo(canvas.width, i);
-        ctx.stroke();
+    var counter = 0;
+    for (i = 0; i <= canvas2.height; i += squareSize) {
+        ctx2.moveTo(0,i);
+        ctx2.lineTo(canvas2.width, i);
+        ctx2.stroke();
+        counter++
     }
-    for (i = 0; i <= canvas.width; i += squareSize) {
-        ctx.moveTo(i,0);
-        ctx.lineTo(i, canvas.height);
-        ctx.stroke();
+    for (i = 0; i <= canvas2.width; i += squareSize) {
+        ctx2.moveTo(i,0);
+        ctx2.lineTo(i, canvas2.height);
+        ctx2.stroke();
+        counter++
     }
+    console.log("rendered " + counter + " lines")
 }
 
 function drawSquare(x,y) {
@@ -41,37 +49,57 @@ function arrayify(string) {
     return new Array(parseInt(string.split(",")[0]), parseInt(string.split(",")[1]));
 }
 
+function getNumLiveNeighbours(x,y) {
+    var liveNeighbours = 0;
+    for (var i = -1; i < 2; i++) {
+        for (var j = -1; j < 2; j++) {
+            if (!(i == 0 && j == 0)) {
+                if (liveSquares.has(stringify(x+i,y+j))) {
+                    liveNeighbours++;
+                }
+            }
+        }
+    }
+    return liveNeighbours;
+}
+
 function checks() {
     var squaresToDie = new Set();
     var squaresToBeBorn = new Set();
 
-    for (var x = 0; x < canvas.width / squareSize; x++) {
-        for (var y = 0; y < canvas.height / squareSize; y++) {
+    var checkedSquares = new Set();
 
-            var liveNeighbours = 0;
-            for (var i = -1; i < 2; i++) {
-                for (var j = -1; j < 2; j++) {
-                    if (!(i == 0 && j == 0)) {
-                        if (liveSquares.has(stringify(x+i,y+j))) {
-                            liveNeighbours++;
+    for (let square of liveSquares) {
+
+        var x1 = arrayify(square)[0];
+        var y1 = arrayify(square)[1];
+        
+        for (var i = -1; i < 2; i++) {
+            for (var j = -1; j < 2; j++) {
+
+                var x2 = x1+i;
+                var y2 = y1+j;
+
+                if (!(checkedSquares.has(stringify(x2,y2)))) {
+                    var liveNeighbours = getNumLiveNeighbours(x2, y2);
+
+                    // If this square is live
+                    if (liveSquares.has(stringify(x2,y2))) {
+                        if (liveNeighbours < 2) {
+                            squaresToDie.add(stringify(x2,y2));
+                            // console.log(x + "," + y + " has " + liveNeighbours + " live neighbours so dies")
+                        } else if (liveNeighbours > 3) {
+                            squaresToDie.add(stringify(x2,y2));
+                            // console.log(x + "," + y + " has " + liveNeighbours + " live neighbours so dies")
+                        }
+                    } else {
+                        if (liveNeighbours == 3) {
+                            squaresToBeBorn.add(stringify(x2,y2));
+                            // console.log(x + "," + y + " has " + liveNeighbours + " live neighbours so is born")
                         }
                     }
-                }
-            }
-            
-            // If this square is live
-            if (liveSquares.has(stringify(x,y))) {
-                if (liveNeighbours < 2) {
-                    squaresToDie.add(stringify(x,y));
-                    // console.log(x + "," + y + " has " + liveNeighbours + " live neighbours so dies")
-                } else if (liveNeighbours > 3) {
-                    squaresToDie.add(stringify(x,y));
-                    // console.log(x + "," + y + " has " + liveNeighbours + " live neighbours so dies")
-                }
-            } else {
-                if (liveNeighbours == 3) {
-                    squaresToBeBorn.add(stringify(x,y));
-                    // console.log(x + "," + y + " has " + liveNeighbours + " live neighbours so is born")
+
+                    checkedSquares.add(stringify(x2,y2));
                 }
             }
         }
@@ -83,7 +111,6 @@ function checks() {
 
 function update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawGrid();
     checks();
     for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
 }
