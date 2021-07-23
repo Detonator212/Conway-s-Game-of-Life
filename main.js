@@ -12,20 +12,16 @@ var ctx2 = canvas2.getContext("2d");
 var squareSize = 10;
 
 function drawGrid() {
-    var counter = 0;
     for (i = 0; i <= canvas2.height; i += squareSize) {
         ctx2.moveTo(0,i);
         ctx2.lineTo(canvas2.width, i);
         ctx2.stroke();
-        counter++
     }
     for (i = 0; i <= canvas2.width; i += squareSize) {
         ctx2.moveTo(i,0);
         ctx2.lineTo(i, canvas2.height);
         ctx2.stroke();
-        counter++
     }
-    console.log("rendered " + counter + " lines")
 }
 
 function drawSquare(x,y) {
@@ -117,4 +113,17 @@ function update() {
 
 drawGrid();
 for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
-setInterval(update, 100);
+setInterval(update, 500);
+
+
+canvas.onmousedown = function(event) {
+
+    // console.log(event.clientX + " " + event.clientY);
+    var titleBar = document.querySelector("#title-bar");
+    liveSquares.add(stringify(Math.floor(event.clientX/squareSize), Math.floor((event.clientY - titleBar.offsetHeight) /squareSize)));
+    // console.log(stringify(Math.floor(event.clientX/squareSize), Math.floor(event.clientY/squareSize)));
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
+
+};
