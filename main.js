@@ -5,7 +5,7 @@ canvas.height = 400;
 
 var ctx = canvas.getContext("2d");
 
-var squareSize = 20;
+var squareSize = 10;
 
 function drawGrid() {
     for (i = 0; i <= canvas.height; i += squareSize) {
@@ -28,13 +28,17 @@ function drawSquare(x,y) {
 var liveSquares = new Set();
 
 liveSquares.add(stringify(5,6));
-liveSquares.add(stringify(6,7));
-liveSquares.add(stringify(7,7));
-liveSquares.add(stringify(8,7));
+liveSquares.add(stringify(6,6));
+liveSquares.add(stringify(7,6));
+liveSquares.add(stringify(6,5));
 
 
 function stringify(x,y) {
     return x.toString() + "," + y.toString();
+}
+
+function arrayify(string) {
+    return new Array(parseInt(string.split(",")[0]), parseInt(string.split(",")[1]));
 }
 
 function checks() {
@@ -81,9 +85,9 @@ function update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGrid();
     checks();
-    for (let item of liveSquares) drawSquare(parseInt(item.split(",")[0]), parseInt(item.split(",")[1]));
+    for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
 }
 
 drawGrid();
-for (let item of liveSquares) drawSquare(parseInt(item.split(",")[0]), parseInt(item.split(",")[1]));
-setInterval(update, 1000);
+for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
+setInterval(update, 100);

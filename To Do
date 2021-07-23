@@ -1,0 +1,1 @@
+Stop game from checking every square every update (just check squares around live squares)
