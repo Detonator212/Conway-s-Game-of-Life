@@ -11,6 +11,9 @@ canvas.height = window.innerHeight;
 var ctx = canvas.getContext("2d");
 
 var squareSize = 10;
+var updatePeriod = 100;
+
+var iterations = 0;
 
 function drawGrid() {
 
@@ -110,6 +113,9 @@ function checks() {
 
     for (let item of squaresToDie) liveSquares.delete(item);
     for (let item of squaresToBeBorn) liveSquares.add(item);
+
+    iterations++
+    counter.innerHTML = iterations; 
 }
 
 function update() {
@@ -176,8 +182,22 @@ document.querySelector("#start-button").onclick = function() {
         interval = setInterval(function() {
             checks();
             update();
-        }, 100);
+        }, updatePeriod);
         started = true;
         startButtonIcon.firstElementChild.setAttribute("href", "#pause-icon")
     }
 };
+
+document.querySelector('#speed-slider').oninput = function() {
+    updatePeriod = 1000 - this.value;
+    console.log(updatePeriod)
+
+    if (started) {
+        clearInterval(interval);
+        interval = setInterval(function() {
+            checks();
+            update();
+        }, updatePeriod);
+        started = true;
+    }
+}

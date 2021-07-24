@@ -7,11 +7,13 @@
         <canvas id="canvas"></canvas>
         <div id="title-bar">Conway's Game of Life</div>
         <div id="controls-bar">
+            <div id="counter">0</div>
             <div id="start-button">
                 <svg id="start-button-icon" viewBox="-3 -3 30 30" fill="white">
                     <use href="#play-icon"></use>
                 </svg>
             </div>
+            <input type="range" min="0" max="990" value="500" id="speed-slider">
         </div>
     </body>
 

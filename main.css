@@ -27,6 +27,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
     background-color: rgba(27, 27, 27, 0.8);
     backdrop-filter: blur(20px);
     height: 80;
@@ -47,4 +48,30 @@ body {
 }
 #start-button:active {
     transform: scale(1)
+}
+
+#speed-slider {
+    -webkit-appearance: none;
+    -webkit-transition: .05s;
+    height: 5px;
+    border-radius: 10px;
+}
+
+#speed-slider:hover {
+    height: 8px;
+}
+
+#speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #424242; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%;
+}
+
+#counter {
+    color: white;
+    font-family: sans-serif;
 }
