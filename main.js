@@ -10,8 +10,10 @@ canvas.height = window.innerHeight;
 
 var ctx = canvas.getContext("2d");
 
+var speedSlider = document.querySelector("#speed-slider")
+
 var squareSize = 10;
-var updatePeriod = 100;
+var updatePeriod = 5000 / speedSlider.value;
 
 var iterations = 0;
 
@@ -193,8 +195,8 @@ document.querySelector("#start-button").onclick = function() {
     }
 };
 
-document.querySelector('#speed-slider').oninput = function() {
-    updatePeriod = 1000 - this.value;
+speedSlider.oninput = function() {
+    updatePeriod = 5000 / this.value;
     console.log(updatePeriod)
 
     if (started) {
