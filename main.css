@@ -74,4 +74,5 @@ body {
 #counter {
     color: white;
     font-family: sans-serif;
+    user-select: none; 
 }

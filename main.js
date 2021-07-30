@@ -17,6 +17,9 @@ var iterations = 0;
 
 function drawGrid() {
 
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
     // ctx.fillStyle = "white";
     ctx.shadowBlur = 0;
     ctx.beginPath();
@@ -123,6 +126,8 @@ function update() {
     drawGrid();
     for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
 }
+
+window.onresize = update;
 
 drawGrid();
 for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
