@@ -17,6 +17,8 @@ var updatePeriod = 5000 / speedSlider.value;
 
 var iterations = 0;
 
+var liveSquares
+
 function drawGrid() {
 
     canvas.width = window.innerWidth;
@@ -44,12 +46,16 @@ function drawSquare(x,y) {
     ctx.fillRect(x*squareSize + offsetX, y*squareSize + offsetY, squareSize, squareSize);
 }
 
-var liveSquares = new Set();
+function reset() {
+    liveSquares = new Set();
+    liveSquares.add(stringify(10,10));
+    liveSquares.add(stringify(11,10));
+    liveSquares.add(stringify(12,10));
+    liveSquares.add(stringify(10,9));
+    iterations = 0;
+}
 
-liveSquares.add(stringify(10,10));
-liveSquares.add(stringify(11,10));
-liveSquares.add(stringify(12,10));
-liveSquares.add(stringify(10,9));
+reset();
 
 
 function stringify(x,y) {
@@ -207,4 +213,10 @@ speedSlider.oninput = function() {
         }, updatePeriod);
         started = true;
     }
+}
+
+document.querySelector("#reset-button").onclick = reset;
+document.querySelector("#next-button").onclick = function() {
+    checks();
+    update();
 }

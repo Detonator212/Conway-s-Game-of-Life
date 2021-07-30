@@ -8,9 +8,19 @@
         <div id="title-bar">Conway's Game of Life</div>
         <div id="controls-bar">
             <div id="counter">0</div>
+            <div id="reset-button">
+                <svg id="reset-button-icon" viewBox="-8 -8 40 40" fill="white">
+                    <use href="#reset-icon"></use>
+                </svg>
+            </div>
             <div id="start-button">
                 <svg id="start-button-icon" viewBox="-3 -3 30 30" fill="white">
                     <use href="#play-icon"></use>
+                </svg>
+            </div>
+            <div id="next-button">
+                <svg id="next-button-icon" viewBox="-8 -8 40 40" fill="white">
+                    <use href="#next-icon"></use>
                 </svg>
             </div>
             <input type="range" min="10" max="200" value="50" id="speed-slider">
@@ -23,6 +33,12 @@
         </symbol>
         <symbol id="pause-icon">
             <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </symbol>
+        <symbol id="reset-icon">
+            <path d="M12,5V1L7,6l5,5V7c3.31,0,6,2.69,6,6s-2.69,6-6,6s-6-2.69-6-6H4c0,4.42,3.58,8,8,8s8-3.58,8-8S16.42,5,12,5z"/>
+        </symbol>
+        <symbol id="next-icon">
+            <path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/>
         </symbol>
     </svg>
 
