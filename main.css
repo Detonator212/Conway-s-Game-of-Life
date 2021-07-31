@@ -50,6 +50,10 @@ body {
 #right-controls {
     display: flex;
     flex: 1;
+    height: 30px;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 #start-button {
@@ -100,11 +104,9 @@ body {
     height: 5px;
     border-radius: 10px;
 }
-
 .slider:hover {
     height: 8px;
 }
-
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -114,6 +116,9 @@ body {
   cursor: pointer; /* Cursor on hover */
   border-radius: 50%;
 }
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1)
+}
 
 #counter {
     color: white;
@@ -121,4 +126,14 @@ body {
     user-select: none;
     width: 70px;
     text-align: right;
+}
+
+.slider-icon {
+    width: 30px;
+}
+
+.zoom-icon {
+    width: 20px;
+    color: white;
+    font-size: 40;
 }

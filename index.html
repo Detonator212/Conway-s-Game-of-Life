@@ -12,7 +12,7 @@
             </div>
             <div id="centre-controls">
                 <div id="reset-button">
-                    <svg id="reset-button-icon" viewBox="-8 -8 40 40" fill="white">
+                    <svg viewBox="-8 -8 40 40" fill="white">
                         <use href="#reset-icon"></use>
                     </svg>
                 </div>
@@ -22,14 +22,24 @@
                     </svg>
                 </div>
                 <div id="next-button">
-                    <svg id="next-button-icon" viewBox="-8 -8 40 40" fill="white">
+                    <svg viewBox="-8 -8 40 40" fill="white">
                         <use href="#next-icon"></use>
                     </svg>
                 </div>
             </div>
             <div id="right-controls">
+                <div class="slider-icon">
+                    <svg viewBox="0 0 24 24" fill="white">
+                        <use href="#speed-icon"></use>
+                    </svg>
+                </div>
                 <input type="range" min="10" max="200" value="50" id="speed-slider" class="slider">
-                <input type="range" min="5" max="40" value="10" id="size-slider" class="slider">
+                <div class="slider-icon">
+                    <svg viewBox="0 0 24 24" fill="white">
+                        <use href="#zoom-icon"></use>
+                    </svg>
+                </div>
+                <input type="range" min="5" max="40" value="10" id="size-slider" class="slider" style="margin-right: 30px;">
             </div>
         </div>
     </body>
@@ -46,6 +56,13 @@
         </symbol>
         <symbol id="next-icon">
             <path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/>
+        </symbol>
+        <symbol id="speed-icon">
+            <path d="M0 0h24v24H0z" fill="none"/><path d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44z"/>
+            <path d="M10.59 15.41a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"/>
+        </symbol>
+        <symbol id="zoom-icon">
+            <path d="M15,3l2.3,2.3l-2.89,2.87l1.42,1.42L18.7,6.7L21,9V3H15z M3,9l2.3-2.3l2.87,2.89l1.42-1.42L6.7,5.3L9,3H3V9z M9,21 l-2.3-2.3l2.89-2.87l-1.42-1.42L5.3,17.3L3,15v6H9z M21,15l-2.3,2.3l-2.87-2.89l-1.42,1.42l2.89,2.87L15,21h6V15z"/>
         </symbol>
     </svg>
 
