@@ -183,7 +183,7 @@ function onMouseUp(event) {
 var started = false;
 var interval;
 
-document.querySelector("#start-button").onclick = function() {
+function togglePlay() {
     var startButtonIcon = document.querySelector("#start-button-icon")
     if (started) {
         clearInterval(interval);
@@ -197,7 +197,9 @@ document.querySelector("#start-button").onclick = function() {
         started = true;
         startButtonIcon.firstElementChild.setAttribute("href", "#pause-icon")
     }
-};
+}
+
+document.querySelector("#start-button").onclick = togglePlay;
 
 speedSlider.oninput = function() {
     updatePeriod = 5000 / this.value;
@@ -223,3 +225,30 @@ document.querySelector("#next-button").onclick = function() {
     checks();
     update();
 }
+
+// Keyboard controls
+
+document.addEventListener("keydown", function(event) {
+    // space bar pressed
+    if (event.keyCode == 32) {
+        togglePlay();
+    }
+    // esc pressed
+    if (event.keyCode == 27) {
+        reset();
+    }
+    // right arrow pressed
+    if (event.keyCode == 39) {
+        checks();
+        update();
+    }
+});
+
+window.addEventListener("wheel", event => {
+    const delta = Math.sign(event.deltaY);
+    console.log(squareSize)
+    if (squareSize + delta*-1 <= 40 && squareSize + delta*-1 >= 5) {
+        squareSize += delta*-1;
+        update();
+    }
+});
