@@ -252,3 +252,11 @@ window.addEventListener("wheel", event => {
         update();
     }
 });
+
+document.querySelector("#info-button").onclick = function() {
+    document.querySelector("#info-background").style.display = "flex"
+}
+
+document.querySelector("#close-button").onclick = function() {
+    document.querySelector("#info-background").style.display = "none"
+}

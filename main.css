@@ -38,7 +38,8 @@ body {
 #left-controls {
     display: flex;
     flex: 1;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #centre-controls {
@@ -136,4 +137,73 @@ body {
     width: 20px;
     color: white;
     font-size: 40;
+}
+
+#info-button {
+    width: 40px;
+    margin-left: 20px;
+    transition: 0.1s;
+}
+#info-button:hover {
+    transform: scale(1.1)
+}
+#info-button:active {
+    transform: scale(1)
+}
+
+#info-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(17, 17, 17, 0.6);
+    backdrop-filter: blur(10px);
+    top: 0%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#info-box {
+    width: 600px;
+    height: 700px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 20px;
+    overflow: hidden;
+    color: white;
+}
+
+#info-box-titlebar {
+    width: 100%;
+    height: 60px;
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#info-text {
+    padding: 20px;
+    font-family: sans-serif;
+    font-size: 20px;
+    overflow: scroll;
+    width: 97%;
+    height: 100%;
+}
+
+#close-button {
+    width: 40px;
+    margin: 0px 15px 0px 15px;
+    transition: 0.1s;
+}
+#close-button:hover {
+    transform: scale(1.1)
+}
+#close-button:active {
+    transform: scale(1)
+}
+
+#info-title {
+    font-family: sans-serif;
+    font-size: 25px;
+    padding-left: 20px;
 }
