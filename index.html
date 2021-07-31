@@ -7,23 +7,30 @@
         <canvas id="canvas"></canvas>
         <div id="title-bar">Conway's Game of Life</div>
         <div id="controls-bar">
-            <div id="counter">0</div>
-            <div id="reset-button">
-                <svg id="reset-button-icon" viewBox="-8 -8 40 40" fill="white">
-                    <use href="#reset-icon"></use>
-                </svg>
+            <div id="left-controls">
+                <div id="counter">0</div>
             </div>
-            <div id="start-button">
-                <svg id="start-button-icon" viewBox="-3 -3 30 30" fill="white">
-                    <use href="#play-icon"></use>
-                </svg>
+            <div id="centre-controls">
+                <div id="reset-button">
+                    <svg id="reset-button-icon" viewBox="-8 -8 40 40" fill="white">
+                        <use href="#reset-icon"></use>
+                    </svg>
+                </div>
+                <div id="start-button">
+                    <svg id="start-button-icon" viewBox="-3 -3 30 30" fill="white">
+                        <use href="#play-icon"></use>
+                    </svg>
+                </div>
+                <div id="next-button">
+                    <svg id="next-button-icon" viewBox="-8 -8 40 40" fill="white">
+                        <use href="#next-icon"></use>
+                    </svg>
+                </div>
             </div>
-            <div id="next-button">
-                <svg id="next-button-icon" viewBox="-8 -8 40 40" fill="white">
-                    <use href="#next-icon"></use>
-                </svg>
+            <div id="right-controls">
+                <input type="range" min="10" max="200" value="50" id="speed-slider" class="slider">
+                <input type="range" min="5" max="40" value="10" id="size-slider" class="slider">
             </div>
-            <input type="range" min="10" max="200" value="50" id="speed-slider">
         </div>
     </body>
 

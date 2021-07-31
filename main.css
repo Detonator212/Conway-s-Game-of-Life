@@ -35,6 +35,23 @@ body {
     bottom: 0;
 }
 
+#left-controls {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+#centre-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#right-controls {
+    display: flex;
+    flex: 1;
+}
+
 #start-button {
     width: 60;
     height: 60;
@@ -77,18 +94,18 @@ body {
     transform: scale(1)
 }
 
-#speed-slider {
+.slider {
     -webkit-appearance: none;
     -webkit-transition: .05s;
     height: 5px;
     border-radius: 10px;
 }
 
-#speed-slider:hover {
+.slider:hover {
     height: 8px;
 }
 
-#speed-slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
   width: 25px; /* Set a specific slider handle width */

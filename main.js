@@ -53,10 +53,11 @@ function reset() {
     liveSquares.add(stringify(12,10));
     liveSquares.add(stringify(10,9));
     iterations = 0;
+    counter.innerHTML = iterations; 
+    update();
 }
 
 reset();
-
 
 function stringify(x,y) {
     return x.toString() + "," + y.toString();
@@ -126,7 +127,7 @@ function checks() {
     for (let item of squaresToBeBorn) liveSquares.add(item);
 
     iterations++
-    counter.innerHTML = iterations; 
+    counter.innerHTML = iterations;
 }
 
 function update() {
@@ -136,9 +137,6 @@ function update() {
 }
 
 window.onresize = update;
-
-drawGrid();
-for (let item of liveSquares) drawSquare(arrayify(item)[0], arrayify(item)[1]);
 
 var oldOffsetX = 0;
 var oldOffsetY = 0;
@@ -213,6 +211,11 @@ speedSlider.oninput = function() {
         }, updatePeriod);
         started = true;
     }
+}
+
+document.querySelector("#size-slider").oninput = function() {
+    squareSize = parseInt(this.value);
+    update();
 }
 
 document.querySelector("#reset-button").onclick = reset;
