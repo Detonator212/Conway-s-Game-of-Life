@@ -52,6 +52,7 @@ function reset() {
     liveSquares.add(stringify(11,10));
     liveSquares.add(stringify(12,10));
     liveSquares.add(stringify(10,9));
+    liveSquares.add(stringify(11,11));
     iterations = 0;
     counter.innerHTML = iterations; 
     update();
